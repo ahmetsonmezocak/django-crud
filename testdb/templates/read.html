@@ -1,0 +1,9 @@
+<h1>READ SAYFASI</h1>
+{% block content %}
+    {% if lessons %}
+        {% for lesson in lessons %}
+            {{ lesson.id }} {{ lesson.name }}
+            <br>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
