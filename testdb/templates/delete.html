@@ -1,0 +1,17 @@
+<h1>DELETE SAYFASI</h1>
+<div class="main">
+    <!-- Create a Form -->
+    <form method="POST">
+        <!-- Security token by Django -->
+        {% csrf_token %}
+
+        {% block content %}
+            {{ lesson.id }} {{ lesson.name }}
+            <br>
+        {% endblock %}
+
+        Silmek istediğinize emin misiniz ?
+        <input type="submit" value="Evet" />
+        <a href="/">Vazgeç </a>
+    </form>
+</div>

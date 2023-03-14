@@ -3,6 +3,10 @@ from . import views
 
 urlpatterns = [
     path("", views.read),
-    path("createdelete", views.createdelete),
-    path("update", views.update),
+    path("read", views.read),
+    # path("<id>/delete", views.delete),
+    path("delete/<int:id>", views.delete),
+    path("create", views.create),
+    path("update/<int:id>", views.update),
+    path("update/updaterecord/<int:id>", views.updaterecord),
 ]

@@ -1,1 +1,32 @@
 <h1>UPDATE SAYFASI</h1>
+
+<form action="updaterecord/{{ lesson.id }}" method="post">
+    {% csrf_token %}
+    {{ lesson.id }} {{ lesson.name }}
+    <br>
+
+    <input name="first" value="{{ lesson.name }}">
+    <br><br>
+    <input type="submit" value="Güncelle">
+</form>
+
+--------------------------------------------
+
+<!-- <div class="main"> -->
+    <!-- Create a Form -->
+    <!-- <form method="POST"> -->
+        <!-- Security token by Django -->
+        <!-- {% csrf_token %}
+
+        {% block content %}
+            {{ lesson.id }} {{ lesson.name }}
+            <br>
+        {% endblock %} -->
+ 
+        <!-- form as paragraph -->
+        <!-- {{ form.as_p }} -->
+ 
+        <!-- <input type="submit" value="Güncelle">
+    </form>
+ 
+</div> -->
