@@ -1,8 +1,42 @@
 <h1>READ SAYFASI</h1>
 {% block content %}
+    <a href="/create">Ders Ekle</a>
+    <br><br>
     {% if lessons %}
         {% for lesson in lessons %}
             {{ lesson.id }} {{ lesson.name }}
+            &nbsp&nbsp
+            <a href="delete/{{ lesson.id }}">Sil</a>
+            &nbsp&nbsp
+            <a href="update/{{ lesson.id }}">Güncelle</a>
+            <br>
+        {% endfor %}
+    {% endif %}
+    <hr>
+
+    <a href="createStudent">Öğrenci Ekle</a>
+    <br><br>
+    {% if students %}
+        {% for student in students %}
+            {{ student.id }} {{ student.name }} {{student.surname}}
+            &nbsp&nbsp
+            <a href="deleteStudent/{{ student.id }}">Sil</a>
+            &nbsp&nbsp
+            <a href="updateStudent/{{ student.id }}">Güncelle</a>
+            <br>
+        {% endfor %}
+    {% endif %}
+    <hr>
+
+    <a href="createTeacher">Öğretmen Ekle</a>
+    <br><br>
+    {% if teachers %}
+        {% for teacher in teachers %}
+            {{ teacher.id }} {{ teacher.name }} {{teacher.surname}}
+            &nbsp&nbsp
+            <a href="deleteTeacher/{{ teacher.id }}">Sil</a>
+            &nbsp&nbsp
+            <a href="updateTeacher/{{ teacher.id }}">Güncelle</a>
             <br>
         {% endfor %}
     {% endif %}

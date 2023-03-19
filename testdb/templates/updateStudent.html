@@ -1,0 +1,12 @@
+<h1>UPDATE SAYFASI</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ student.id }} {{ student.name }} {{ student.surname }}
+    <br>
+    {{ form.as_p }}
+    <!-- <input name="first" value="{{ lesson.name }}"> -->
+    <br><br>
+    <input type="submit" value="Güncelle">
+    <a href="/">Vazgeç </a>
+</form>

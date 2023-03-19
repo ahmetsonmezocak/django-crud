@@ -4,10 +4,11 @@
     {% csrf_token %}
     {{ lesson.id }} {{ lesson.name }}
     <br>
-
-    <input name="first" value="{{ lesson.name }}">
+    {{ form.as_p }}
+    <!-- <input name="first" value="{{ lesson.name }}"> -->
     <br><br>
     <input type="submit" value="Güncelle">
+    <a href="/">Vazgeç </a>
 </form>
 
 --------------------------------------------
