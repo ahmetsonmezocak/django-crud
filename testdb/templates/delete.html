@@ -1,19 +1,21 @@
+{% extends 'layout.html' %}
+{% block title %}Sil{% endblock %}
+{% block content %}
 <h1>DELETE SAYFASI</h1>
-<div class="main">
-    <!-- Create a Form -->
-    <form method="POST">
-        <!-- Security token by Django -->
-        {% csrf_token %}
+<form method="POST">
+    <!-- Security token by Django -->
+    {% csrf_token %}
 
-        {% block content %}
-            {{ lesson.id }} {{ lesson.name }}
-            {{ student.id }} {{ student.name }} {{ student.surname }}
-            {{ teacher.id }} {{ teacher.name }} {{ teacher.surname }}
-            <br>
-        {% endblock %}
+    <p class="text-decoration-underline fw-semibold">{{ lesson.id }} {{ lesson.name }}</p>
+    <p class="text-decoration-underline fw-semibold">{{ student.id }} {{ student.name }} {{ student.surname }}</p>
+    <p class="text-decoration-underline fw-semibold">{{ teacher.id }} {{ teacher.name }} {{ teacher.surname }} {{ teacher.lesson }}</p>
+    <hr>
+    <br>
 
-        Silmek istediğinize emin misiniz ?
-        <input type="submit" value="Evet" />
-        <a href="/">Vazgeç </a>
-    </form>
-</div>
+    Silmek istediğinize emin misiniz ?
+    <br>
+    <input class="btn btn-danger" type="submit" value="Evet" />
+    &nbsp&nbsp
+    <a  href="/">Vazgeç </a>
+</form>
+{% endblock %}

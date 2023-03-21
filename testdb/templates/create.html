@@ -1,13 +1,16 @@
+{% extends 'layout.html' %}
+{% block title %}Oluştur{% endblock %}
+{% block content %}
 <h1>CREATE SAYFASI</h1>
-
 <form method="POST" enctype="multipart/form-data">
- 
     <!-- Security token -->
     {% csrf_token %}
  
     <!-- Using the formset -->
     {{ form.as_p }}
      
-    <input type="submit" value="Kaydet">
+    <input class="btn btn-primary" type="submit" value="Kaydet">
+    &nbsp&nbsp
     <a href="/">Vazgeç </a>
 </form>
+{% endblock %}

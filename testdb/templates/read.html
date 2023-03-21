@@ -1,43 +1,94 @@
-<h1>READ SAYFASI</h1>
+{% extends 'layout.html' %}
+{% block title %}Kayıtlar{% endblock %}
 {% block content %}
-    <a href="/create">Ders Ekle</a>
-    <br><br>
-    {% if lessons %}
-        {% for lesson in lessons %}
-            {{ lesson.id }} {{ lesson.name }}
-            &nbsp&nbsp
-            <a href="delete/{{ lesson.id }}">Sil</a>
-            &nbsp&nbsp
-            <a href="update/{{ lesson.id }}">Güncelle</a>
-            <br>
-        {% endfor %}
-    {% endif %}
-    <hr>
+<h1>READ SAYFASI</h1>
 
-    <a href="createStudent">Öğrenci Ekle</a>
-    <br><br>
-    {% if students %}
-        {% for student in students %}
-            {{ student.id }} {{ student.name }} {{student.surname}}
-            &nbsp&nbsp
-            <a href="deleteStudent/{{ student.id }}">Sil</a>
-            &nbsp&nbsp
-            <a href="updateStudent/{{ student.id }}">Güncelle</a>
-            <br>
-        {% endfor %}
-    {% endif %}
-    <hr>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Ders Adı</th>
+            <th scope="col">İşlem</th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        {% if lessons %}
+            {% for lesson in lessons %}
+                <tr>
+                    <th scope="row">{{ lesson.id }}</th>
+                    <td>{{ lesson.name }}</td>
+                    <td>
+                        <a href="deleteLesson/{{ lesson.id }}">Sil</a>
+                        &nbsp&nbsp
+                        <a href="updateLesson/{{ lesson.id }}">Güncelle</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+    </tbody>
+</table>
+<a class="btn btn-primary" role="button" href="/createLesson">Ders Ekle</a>
+<br><br>
+<hr>
 
-    <a href="createTeacher">Öğretmen Ekle</a>
-    <br><br>
-    {% if teachers %}
-        {% for teacher in teachers %}
-            {{ teacher.id }} {{ teacher.name }} {{teacher.surname}}
-            &nbsp&nbsp
-            <a href="deleteTeacher/{{ teacher.id }}">Sil</a>
-            &nbsp&nbsp
-            <a href="updateTeacher/{{ teacher.id }}">Güncelle</a>
-            <br>
-        {% endfor %}
-    {% endif %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Öğrenci Adı</th>
+            <th scope="col">Öğrenci Soyadı</th>
+            <th scope="col">İşlem</th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        {% if students %}
+            {% for student in students %}
+                <tr>
+                    <th scope="row">{{ student.id }}</th>
+                    <td>{{ student.name }}</td>
+                    <td>{{ student.surname }}</td>
+                    <td>
+                        <a href="deleteStudent/{{ student.id }}">Sil</a>
+                        &nbsp&nbsp
+                        <a href="updateStudent/{{ student.id }}">Güncelle</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+    </tbody>
+</table>
+<a class="btn btn-primary" role="button" href="createStudent">Öğrenci Ekle</a>
+<br><br>
+<hr>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Öğretmen Adı</th>
+            <th scope="col">Öğretmen Soyadı</th>
+            <th scope="col">Öğretmen Branşı</th>
+            <th scope="col">İşlem</th>
+        </tr>
+    </thead>
+    <tbody class="table-group-divider">
+        {% if teachers %}
+            {% for teacher in teachers %}
+                <tr>
+                    <th scope="row">{{ teacher.id }}</th>
+                    <td>{{ teacher.name }}</td>
+                    <td>{{ teacher.surname }}</td>
+                    <td>{{ teacher.lesson }}</td>
+                    <td>
+                        <a href="deleteTeacher/{{ teacher.id }}">Sil</a>
+                        &nbsp&nbsp
+                        <a href="updateTeacher/{{ teacher.id }}">Güncelle</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+    </tbody>
+</table>
+<a class="btn btn-primary" role="button" href="createTeacher">Öğretmen Ekle</a>
+<br><br>
 {% endblock %}
