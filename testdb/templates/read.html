@@ -1,94 +1,123 @@
 {% extends 'layout.html' %}
+{% load static %}
+{% block head %}<link rel="stylesheet" href="{% static 'css/style.css' %}">{% endblock %}
 {% block title %}Kayıtlar{% endblock %}
 {% block content %}
 <h1>READ SAYFASI</h1>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Ders Adı</th>
-            <th scope="col">İşlem</th>
-        </tr>
-    </thead>
-    <tbody class="table-group-divider">
-        {% if lessons %}
-            {% for lesson in lessons %}
-                <tr>
-                    <th scope="row">{{ lesson.id }}</th>
-                    <td>{{ lesson.name }}</td>
-                    <td>
-                        <a href="deleteLesson/{{ lesson.id }}">Sil</a>
-                        &nbsp&nbsp
-                        <a href="updateLesson/{{ lesson.id }}">Güncelle</a>
-                    </td>
-                </tr>
-            {% endfor %}
-        {% endif %}
-    </tbody>
+<table class="table">
+    <tr class="table-light">
+        <th>
+            <button id="btnLesson">#</button>
+        </th>
+        <th>
+            <button>Ders Adı</button>
+        </th>
+        <th>İşlem</th>
+    </tr>
+
+    {% if lessons %}
+        {% for lesson in lessons %}
+            <tr>
+                <td>{{ lesson.id }}</td>
+                <td>{{ lesson.name }}</td>
+                <td>
+                    <a href="deleteLesson/{{ lesson.id }}">Sil</a>
+                    &nbsp&nbsp
+                    <a href="updateLesson/{{ lesson.id }}">Güncelle</a>
+                </td>
+            </tr>
+        {% endfor %}
+    {% endif %}
 </table>
 <a class="btn btn-primary" role="button" href="/createLesson">Ders Ekle</a>
 <br><br>
 <hr>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Öğrenci Adı</th>
-            <th scope="col">Öğrenci Soyadı</th>
-            <th scope="col">İşlem</th>
-        </tr>
-    </thead>
-    <tbody class="table-group-divider">
-        {% if students %}
-            {% for student in students %}
-                <tr>
-                    <th scope="row">{{ student.id }}</th>
-                    <td>{{ student.name }}</td>
-                    <td>{{ student.surname }}</td>
-                    <td>
-                        <a href="deleteStudent/{{ student.id }}">Sil</a>
-                        &nbsp&nbsp
-                        <a href="updateStudent/{{ student.id }}">Güncelle</a>
-                    </td>
-                </tr>
-            {% endfor %}
-        {% endif %}
-    </tbody>
+<table class="table">
+    <tr class="table-light">
+        <th scope="col">
+            <button id="btnStudent">#</button>
+        </th>
+        <th scope="col">
+            <button>Öğrenci Adı</button>
+        </th>
+        <th scope="col">
+            <button>Öğrenci Soyadı</button>
+        </th>
+        <th scope="col">İşlem</th>
+    </tr>
+
+    {% if students %}
+        {% for student in students %}
+            <tr>
+                <td scope="row">{{ student.id }}</td>
+                <td>{{ student.name }}</td>
+                <td>{{ student.surname }}</td>
+                <td>
+                    <a href="deleteStudent/{{ student.id }}">Sil</a>
+                    &nbsp&nbsp
+                    <a href="updateStudent/{{ student.id }}">Güncelle</a>
+                </td>
+            </tr>
+        {% endfor %}
+    {% endif %}
 </table>
 <a class="btn btn-primary" role="button" href="createStudent">Öğrenci Ekle</a>
 <br><br>
 <hr>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Öğretmen Adı</th>
-            <th scope="col">Öğretmen Soyadı</th>
-            <th scope="col">Öğretmen Branşı</th>
-            <th scope="col">İşlem</th>
-        </tr>
-    </thead>
-    <tbody class="table-group-divider">
-        {% if teachers %}
-            {% for teacher in teachers %}
-                <tr>
-                    <th scope="row">{{ teacher.id }}</th>
-                    <td>{{ teacher.name }}</td>
-                    <td>{{ teacher.surname }}</td>
-                    <td>{{ teacher.lesson }}</td>
-                    <td>
-                        <a href="deleteTeacher/{{ teacher.id }}">Sil</a>
-                        &nbsp&nbsp
-                        <a href="updateTeacher/{{ teacher.id }}">Güncelle</a>
-                    </td>
-                </tr>
-            {% endfor %}
-        {% endif %}
-    </tbody>
+<table class="table">
+    <tr class="table-light">
+        <th scope="col">
+            <button id="btnTeacher">#</button>
+        </th>
+        <th scope="col">
+            <button>Öğretmen Adı</button>
+        </th>
+        <th scope="col">
+            <button>Öğretmen Soyadı</button>
+        </th>
+        <th scope="col">
+            <button>Öğretmen Branşı</button>
+        </th>
+        <th scope="col">İşlem</th>
+    </tr>
+
+    {% if teachers %}
+        {% for teacher in teachers %}
+            <tr>
+                <td scope="row">{{ teacher.id }}</td>
+                <td>{{ teacher.name }}</td>
+                <td>{{ teacher.surname }}</td>
+                {% for lesson in lessons %}
+                    {% if lesson == teacher.lesson %}
+                        <td>{{ lesson.name }}</td>
+                    {% endif %}
+                {% endfor %}
+                <td>
+                    <a href="deleteTeacher/{{ teacher.id }}">Sil</a>
+                    &nbsp&nbsp
+                    <a href="updateTeacher/{{ teacher.id }}">Güncelle</a>
+                </td>
+            </tr>
+        {% endfor %}
+    {% endif %}
 </table>
 <a class="btn btn-primary" role="button" href="createTeacher">Öğretmen Ekle</a>
 <br><br>
+
+<script src="{% static 'js/sort.js' %}"></script>
+
+<script>
+    window.onload = function(){
+        document.getElementById('btnLesson').click();
+
+        document.getElementById('btnStudent').click();
+        document.getElementById('btnStudent').click();
+        
+        document.getElementById('btnTeacher').click();
+        document.getElementById('btnTeacher').click();
+    }
+</script>
 {% endblock %}
